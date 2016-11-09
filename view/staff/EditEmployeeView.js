@@ -10,6 +10,7 @@ Ext.define('StaffApp.view.staff.EditEmployeeView', {
     bodyPadding: 5,
     width: 700,
     height: 400,
+    controller: 'staff_controller',
 
     layout: {
         type: 'vbox',
@@ -26,13 +27,12 @@ Ext.define('StaffApp.view.staff.EditEmployeeView', {
             flex: 1,
             width: '100%',
             items: [{
-                //width: '45%',
                 xtype: 'textfield',
-                name: 'secondName',
+                name: 'secondname',
                 fieldLabel: 'Фамилия'
             }, {
                 xtype: 'textfield',
-                name: 'firstName',
+                name: 'firstname',
                 fieldLabel: 'Имя'
             }, {
                 xtype: 'textfield',
@@ -49,7 +49,7 @@ Ext.define('StaffApp.view.staff.EditEmployeeView', {
             }, {
                 xtype: 'textareafield',
                 grow: true,
-                name: 'comment',
+                name: 'note',
                 fieldLabel: 'Комментарий'
             }]
         }]
@@ -63,20 +63,22 @@ Ext.define('StaffApp.view.staff.EditEmployeeView', {
                 layout: 'hbox',
                 items: [{
                     boxLabel: 'M',
-                    name: 'sex',
-                    inputValue: 'm',
+                    name: 'ismale',
+                    inputValue: true,
                     id: 'radio1'
                 }, {
                     boxLabel: 'Ж',
-                    name: 'sex',
-                    inputValue: 'f',
+                    name: 'ismale',
+                    inputValue: false,
                     id: 'radio2'
                 }]
             }
         }],
     buttons: [{
-        text: 'Сохранить'
+        text: 'Сохранить',
+        handler: 'saveChanges'
     }, {
-        text: 'Отмена'
+        text: 'Отмена',
+        handler: 'closeForm'
     }]
 });

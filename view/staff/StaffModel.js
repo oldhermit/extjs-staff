@@ -4,11 +4,22 @@
 
 Ext.define('StaffApp.view.staff.StaffModel', {
     extend: 'Ext.data.Model',
-    alias: 'model.staff',
+    alias: 'model.staffmodel',
     fields: [
         'secondname', 'firstname', 'patronym',
         { name: 'age', type: 'integer' },
-        { name: 'isMale', type: 'bool' },
+        { name: 'ismale', type: 'bool' },
         'note'
-    ]
+    ],
+    formulas: {
+        stringForSearch: {
+            bind: {
+                dataForFilter: '{stringForSearch}'
+            },
+            get: function (dataObject) {
+                debugger;
+                console.log(dataObject.dataForFilter);
+            }
+        }
+    }
 });

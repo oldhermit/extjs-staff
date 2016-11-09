@@ -16,6 +16,7 @@ Ext.define('StaffApp.view.staff.ListView', {
 
     title: 'Personnel',
     controller: 'staff_controller',
+    model: 'staffmodel',
 
     store: {
         type: 'staffstore'
@@ -25,7 +26,12 @@ Ext.define('StaffApp.view.staff.ListView', {
         xtype: 'toolbar',
         dock: 'top',
         items: [
-            {xtype: 'textfield'},
+            {
+                xtype: 'textfield',
+                bind: {
+                    value: '{stringForSearch}'
+                }
+            },
             {   xtype: 'combobox',
                 queryMode: 'local',
                 editable: false,
@@ -34,7 +40,7 @@ Ext.define('StaffApp.view.staff.ListView', {
                 //fieldLabel: 'Стать'
             },
             '->',
-            { text: 'Добавить' },
+            { text: 'Добавить', handler: 'onInsertKey' },
             { text: 'Редактировать', handler: 'onEditKey' },
             { text: 'Удалить', handler: 'onDeleteKey' }
         ]
@@ -49,7 +55,7 @@ Ext.define('StaffApp.view.staff.ListView', {
 
         { text: 'Возраст', dataIndex: 'age', flex:1},
         { text: 'Пол', flex: 1,
-            dataIndex: 'isMale',
+            dataIndex: 'ismale',
             xtype:'booleancolumn',
             trueText:'Муж.',
             falseText:'Жен.'        },

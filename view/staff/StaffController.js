@@ -16,14 +16,24 @@ Ext.define('StaffApp.view.staff.StaffController', {
     //     this.editFormPanel = new StaffApp.view.staff.EditEmployeeView();
     // },
 
-    onEditKey: function(button) {
+    callModal: function(button, isAdding) {
         var gridInst = button.up('stafflist');
         var selection = gridInst.getSelection();
-        // var selection = gridInst.getSelectionModel();
         var editFormPanel = new StaffApp.view.staff.EditEmployeeView();
-
-        editFormPanel.getForm().loadRecord(selection);
+        editFormPanel.isAdding = isAdding;
+        editFormPanel.parentComponent = gridInst;
+        if (!isAdding) {
+            editFormPanel.getForm().loadRecord(selection[0]);
+        }
         editFormPanel.show();
+    },
+
+    onEditKey: function(button) {
+        this.callModal(button, false);
+    },
+
+    onInsertKey: function(button) {
+        this.callModal(button, true);
     },
 
     onDeleteKey: function(button) {
@@ -37,29 +47,20 @@ Ext.define('StaffApp.view.staff.StaffController', {
 
     onItemSelected: function () {
         //
+    },
+
+    saveChanges: function (button) {
+        var editForm = button.up('staffedit');
+        if (editForm.isAdding) {
+            editForm.parentComponent.store.add(editForm.getForm().getFieldValues());
+        } else {
+            editForm.getForm().updateRecord();
+        }
+        editForm.close();
+    },
+
+    closeForm: function (button) {
+        var editForm = button.up('staffedit');
+        editForm.close();
     }
-
 });
-
-// updateBook: function(button) {
-//     var win    = button.up('window'),
-//         form   = win.down('form'),
-//         values = form.getValues(),
-//         id = form.getRecord().get('id');
-//     values.id=id;
-//     Ext.Ajax.request({
-//         url: 'app/data/update.php',
-//         params: values,
-//         success: function(response){
-//             var data=Ext.decode(response.responseText);
-//             if(data.success){
-//                 var store = Ext.widget('booklist').getStore();
-//                 store.load();
-//                 Ext.Msg.alert('Обновление',data.message);
-//             }
-//             else{
-//                 Ext.Msg.alert('Обновление','Не удалось обновить книгу в библиотеке');
-//             }
-//         }
-//     });
-// },
