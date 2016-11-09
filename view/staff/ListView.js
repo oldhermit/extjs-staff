@@ -16,7 +16,9 @@ Ext.define('StaffApp.view.staff.ListView', {
 
     title: 'Personnel',
     controller: 'staff_controller',
-    model: 'staffmodel',
+    viewModel: {
+        type: 'staffmodel'
+    },
 
     store: {
         type: 'staffstore'

@@ -3,8 +3,8 @@
  */
 
 Ext.define('StaffApp.view.staff.StaffModel', {
-    extend: 'Ext.data.Model',
-    alias: 'model.staffmodel',
+    extend: 'Ext.app.ViewModel',
+    alias: 'viewmodel.staffmodel',
     fields: [
         'secondname', 'firstname', 'patronym',
         { name: 'age', type: 'integer' },
