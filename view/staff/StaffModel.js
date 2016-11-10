@@ -12,13 +12,22 @@ Ext.define('StaffApp.view.staff.StaffModel', {
         'note'
     ],
     formulas: {
-        stringForSearch: {
+        filters: {
             bind: {
-                dataForFilter: '{stringForSearch}'
+                stringForSearch: '{stringForSearch}'
             },
             get: function (dataObject) {
-                debugger;
-                console.log(dataObject.dataForFilter);
+                var store = Ext.getStore();
+                console.log(store.data);
+                store.filterBy(function(record) {
+                    console.log(record);
+                    return true;
+                });
+                // debugger;
+                // console.log(dataObject.stringForSearch);
+                //get store
+                //filter by name
+                //return filter
             }
         }
     }

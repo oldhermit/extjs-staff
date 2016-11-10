@@ -1,6 +1,5 @@
 /**
  * This view is a Staff View.
- *
  */
 
 Ext.define('StaffApp.view.staff.ListView', {
@@ -32,6 +31,11 @@ Ext.define('StaffApp.view.staff.ListView', {
                 xtype: 'textfield',
                 bind: {
                     value: '{stringForSearch}'
+                },
+                listeners: {
+                    onchange: function (data) {
+                        //store.filter
+                    }
                 }
             },
             {   xtype: 'combobox',

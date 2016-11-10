@@ -22,20 +22,20 @@ Ext.define('StaffApp.view.staff.StaffStore', {
             age: 18, ismale: true, note: "Square head"}
     ]},
 
+    // store: {
+    //     type: 'staffstore'
+    // },
+
     // filters: [
-    //     function(item) {
-    //         console.log(item);
-    //         return item.data.age > 30;
-    //     },
-    //     function(item) {
-    //         return item.data.ismale;
-    //     }
+        // function(item) {
+        //     console.log(item);
+        //     return item.data.age > 30;
+        // },
+        // function(item) {
+        //     return item.data.ismale;
+        // }
     // ],
 
-    // sorters: [{
-    //     direction: 'DESC',
-    //     property: 'secondname'
-    // }]
     proxy: {
         type: 'memory',
         reader: {
